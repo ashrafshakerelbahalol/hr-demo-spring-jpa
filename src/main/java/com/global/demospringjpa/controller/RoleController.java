@@ -28,8 +28,8 @@ public class RoleController {
         return roleService.findAll();
     }
     @GetMapping("rolename/{name}")
-    public List<Role> findByRole(@PathVariable String name) {
-        return roleService.findByRole(name);
+    public Role findByName(@PathVariable String name) {
+        return roleService.findByName(name);
     }
    @PostMapping("insert")
     public Role insert(@RequestBody Role role) {

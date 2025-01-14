@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.global.demospringjpa.Entity.Role;
 import com.global.demospringjpa.Repository.RoleRepository;
+
 @Service
 public class RoleService {
     @Autowired
@@ -20,7 +21,7 @@ public class RoleService {
 
     public Role update(Role role) {
          Role current= roleRepository.findById(role.getId()).get();
-         current.setRole(role.getRole());
+         current.setName(role.getName());
          return roleRepository.save(current);
     }
 
@@ -33,8 +34,8 @@ public class RoleService {
  
     }
 
-    public List<Role> findByRole(String name) {
-        return roleRepository.findByRoleRole(name);
+    public Role findByName(String name) {
+        return roleRepository.findByName(name);
     }
-    
+
 }

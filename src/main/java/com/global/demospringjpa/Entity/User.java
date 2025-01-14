@@ -30,6 +30,10 @@ public class User {
     @JoinTable(name = "sec_user_role", joinColumns = @JoinColumn(name = "user_id"))
     Set<Role> roles = new HashSet<>();
 
+    public void addRole(Role role){
+      roles.add(role);
+    }
+
     public Employee getEmployee() {
         return employee;
     }

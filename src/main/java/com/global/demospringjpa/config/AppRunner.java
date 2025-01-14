@@ -20,8 +20,6 @@ import com.global.demospringjpa.service.UserService;
 @Component
 public class AppRunner implements CommandLineRunner {
     @Autowired
-    private UserService userService;
-    @Autowired
     private RoleService roleService;
     @Autowired
     private EmployeeService employeeService;
@@ -32,13 +30,13 @@ public class AppRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (departmentService.findAll().isEmpty() && employeeService.findAll().isEmpty()) {
             Role role1 = new Role();
-            role1.setRole("admin");
+            role1.setName("admin");
             roleService.insert(role1);
             Role role2 = new Role();
-            role2.setRole("gogo");
+            role2.setName("gogo");
             roleService.insert(role2);
             Role role3 = new Role();
-            role3.setRole("user");
+            role3.setName("user");
             roleService.insert(role3);
 
             Set<Role> roles = new HashSet<>();
@@ -65,8 +63,6 @@ public class AppRunner implements CommandLineRunner {
             user4.setPassword("pas4rd");
             user4.setRoles(roles);
         
-      
-
             Department department = new Department();
             department.setId(1L);
             department.setName("accountant");
@@ -101,32 +97,32 @@ public class AppRunner implements CommandLineRunner {
             employeeService.insert(employee4);
             
             for (int i = 5; i <= 300; i++) {
-                // Create a unique set of roles for each user
+                
                 Set<Role> role = new HashSet<>();
-                role.add(role3); // Assign "user" role by default
+                role.add(role3); 
                 if (i % 2 == 0) {
-                    role.add(role2); // Assign "gogo" role for even-numbered users
+                    role.add(role2);
                 }
                 if (i % 3 == 0) {
-                    role.add(role1); // Assign "admin" role for users divisible by 3
+                    role.add(role1); 
                 }
             
-                // Create a new user
+                
                 User user = new User();
-                user.setUsername("user" + i); // Unique username
-                user.setPassword("password" + i); // Unique password
+                user.setUsername("user" + i); 
+                user.setPassword("password" + i); 
                 user.setRoles(role);
             
             
             
-                // Create a new employee
+               
                 Employee employee = new Employee();
-                employee.setName("Employee " + i); // Unique name
-                employee.setSalary(1000.0 * i); // Unique salary
-                employee.setUser(user); // Assign the persisted user
+                employee.setName("Employee " + i); 
+                employee.setSalary(1000.0 * i); 
+                employee.setUser(user); 
                 employee.setDepartment(department);
             
-                // Save the employee
+              
                 employeeService.insert(employee);
             }
         }

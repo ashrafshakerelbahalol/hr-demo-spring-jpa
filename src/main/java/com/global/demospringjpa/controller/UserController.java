@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.global.demospringjpa.Entity.Role;
 import com.global.demospringjpa.Entity.User;
 import com.global.demospringjpa.service.UserService;
 
@@ -40,5 +42,10 @@ public class UserController {
     public User update(@RequestBody User user) {
         
         return userService.update(user);
+    }
+    @PutMapping("addroletoalluser/{name}")
+    public void addRoleToAllUsers( @PathVariable String name) {
+        
+         userService.addRoleToAllUsers(name);
     }
 }
